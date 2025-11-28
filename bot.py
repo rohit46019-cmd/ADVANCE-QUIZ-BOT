@@ -11,7 +11,8 @@ setup_logging()
 logger = logging.getLogger("quiz-bot")
 
 def main():
-    app = Application.builder().token(TELEGRAM_TOKEN).concurrent_updates(True).build()
+   app = Application.builder().token(TELEGRAM_TOKEN).build()
+
 
     # Commands
     app.add_handler(CommandHandler("start", start_handler.start))
