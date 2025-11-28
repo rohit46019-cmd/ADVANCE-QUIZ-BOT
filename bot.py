@@ -11,8 +11,8 @@ setup_logging()
 logger = logging.getLogger("quiz-bot")
 
 def main():
-   app = Application.builder().token(TELEGRAM_TOKEN).build()
-
+    # Build Application (new API, no Updater)
+    app = Application.builder().token(TELEGRAM_TOKEN).build()
 
     # Commands
     app.add_handler(CommandHandler("start", start_handler.start))
@@ -41,7 +41,7 @@ def main():
             logger.info(f"Starting webhook on {HOST}:{PORT} -> {WEBHOOK_URL}")
             app.run_webhook(
                 listen=HOST,
-                port=PORT,                          # If PORT not open/allowed, exception triggers fallback
+                port=PORT,  # If PORT not open/allowed, exception triggers fallback
                 url_path="bot",
                 webhook_url=WEBHOOK_URL.rstrip("/") + "/bot",
                 drop_pending_updates=True,
